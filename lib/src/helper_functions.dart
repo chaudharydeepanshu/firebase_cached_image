@@ -21,18 +21,18 @@ String getUniqueId(String url) {
 }
 
 Uint8List decryptBytes(
-    Uint8List encryptedDataWithIV,
-    String encryptedSecret,
-  ) {
-    final encryptor = _getEncryptor(encryptedSecret);
-    final decryptedBytes = encryptor.decryptBytes(
-      Encrypted(encryptedDataWithIV.sublist(16)),
-      iv: IV(encryptedDataWithIV.sublist(0, 16)),
-    );
-    return Uint8List.fromList(decryptedBytes);
-  }
+  Uint8List encryptedDataWithIV,
+  String encryptedSecret,
+) {
+  final encryptor = _getEncryptor(encryptedSecret);
+  final decryptedBytes = encryptor.decryptBytes(
+    Encrypted(encryptedDataWithIV.sublist(16)),
+    iv: IV(encryptedDataWithIV.sublist(0, 16)),
+  );
+  return Uint8List.fromList(decryptedBytes);
+}
 
-  Encrypter _getEncryptor(String base64HexKey) {
-    final key = Key.fromBase64(base64HexKey);
-    return Encrypter(AES(key, mode: AESMode.cbc));
-  }
+Encrypter _getEncryptor(String base64HexKey) {
+  final key = Key.fromBase64(base64HexKey);
+  return Encrypter(AES(key, mode: AESMode.ctr, padding: null));
+}
