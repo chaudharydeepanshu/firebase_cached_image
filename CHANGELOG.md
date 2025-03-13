@@ -1,7 +1,17 @@
-## 0.6.1 
+## 0.6.3
+
+- Fix: Invalid type cast in image not found check
+- Breaking: ImageNotFoundException.originalException is now of type `Object` instead of `PlatformException`
+
+## 0.6.2
+
+- Feat: Fallback url support added in `FirebaseImageProvider`
+- Fix: ImageNotFoundException not thrown when the file is not found on the server
+
+## 0.6.1
 
 - Update firebase_core and firebase_storage dependencies' max version
-
+ 
 ## 0.6.0
 
 - `CacheOptions.metadataRefreshInBackground` field removed (Breaking).
